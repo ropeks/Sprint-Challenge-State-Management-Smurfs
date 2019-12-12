@@ -35,7 +35,7 @@ class TeamForm extends Component {
                     placeholder='height'
                     onChange={this.onFormChange.bind(this)}
                   />
-                  <button onClick={this.onFormSubmit.bind(this)}>Add Smurf</button>
+                  <button onClick={this.onFormSubmit.bind(this)}>Add Member</button>
               </form>
           </div>
       );

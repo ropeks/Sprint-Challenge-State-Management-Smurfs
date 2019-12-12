@@ -8,7 +8,7 @@ const initialState = {
   teamList: [],
   teamForm: {
     name: '',
-    age: 0,
+    age: '',
     height: '',
   },
 }
