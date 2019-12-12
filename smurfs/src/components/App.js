@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import smurfContext from '../contexts/smurfContext';
+import teamContext from '../contexts/teamContext';
 import axios from 'axios';
-import SmurfList from './SmurfList';
-import SmurfForm from './SmurfForm';
+import TeamList from './TeamList';
+import TeamForm from './TeamForm';
 
 const initialState = {
-  smurfList: [],
-  smurfForm: {
+  teamList: [],
+  teamForm: {
     name: '',
     age: 0,
     height: '',
@@ -18,27 +18,26 @@ class MyProvider extends Component {
 
   render() {
     return (
-      <smurfContext.Provider value={{
+      <teamContext.Provider value={{
 
         state: this.state,
 
-        getSmurfs: () => {
-          axios.get('http://localhost:3333/smurfs')
+        getTeam: () => {
+          axios.get('http://localhost:3333/team')
             .then(res => {
-              this.setState({smurfList: res.data});
+              this.setState({teamList: res.data});
             })
             .catch(err => {
               console.log(err)
             })
         },
 
-        addSmurf: () => {
-          console.log(this.state)
-          axios.post('http://localhost:3333/smurfs', this.state.smurfForm)
+        addMember: () => {
+          axios.post('http://localhost:3333/team', this.state.teamForm)
             .then(res => {
               this.setState({
                 ...initialState,
-                smurfList: res.data
+                teamList: res.data
               });
             })
             .catch(err => {
@@ -49,8 +48,8 @@ class MyProvider extends Component {
         formChange: (target, value) => {
           this.setState({
             ...this.state,
-            smurfForm: {
-              ...this.state.smurfForm,
+            teamForm: {
+              ...this.state.teamForm,
               [target]: value,
             },
           })
@@ -58,7 +57,7 @@ class MyProvider extends Component {
 
       }}>
         {this.props.children}
-      </smurfContext.Provider>
+      </teamContext.Provider>
     )
   }
 }
@@ -68,8 +67,8 @@ class App extends Component {
     return (
       <MyProvider>
         <div>
-          <SmurfList />
-          <SmurfForm />
+          <TeamList />
+          <TeamForm />
         </div>
       </MyProvider>
     );

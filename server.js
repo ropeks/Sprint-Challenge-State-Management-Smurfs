@@ -12,41 +12,41 @@ const sendUserError = (msg, res) => {
   return;
 };
 
-let smurfs = [
+let team = [
   {
-    name: 'Brainey',
-    age: 200,
-    height: '5cm',
+    name: 'Petar',
+    age: 20,
+    height: '185cm',
     id: 0
   }
 ];
-server.get('/smurfs', (req, res) => {
-  res.json(smurfs);
+server.get('/team', (req, res) => {
+  res.json(team);
 });
-let smurfId = smurfs.length;
+let teamMemberId = team.length;
 
-server.post('/smurfs', (req, res) => {
+server.post('/team', (req, res) => {
   const { name, age, height } = req.body;
-  const newSmurf = { name, age, height, id: smurfId };
+  const newMember = { name, age, height, id: teamMemberId };
   if (!name || !age || !height) {
     return sendUserError(
-      'Ya gone did smurfed! Name/Age/Height are all required to create a smurf in the smurf DB.',
+      'Ya gone did teamed! Name/Age/Height are all required to create a team member in the team DB.',
       res
     );
   }
-  const findSmurfByName = smurf => {
-    return smurf.name === name;
+  const findMemberByName = member => {
+    return member.name === name;
   };
-  if (smurfs.find(findSmurfByName)) {
+  if (team.find(findMemberByName)) {
     return sendUserError(
-      `Ya gone did smurfed! ${name} already exists in the smurf DB.`,
+      `Ya gone did teamed! ${name} already exists in the team DB.`,
       res
     );
   }
 
-  smurfs.push(newSmurf);
-  smurfId++;
-  res.json(smurfs);
+  team.push(newMember);
+  teamMemberId++;
+  res.json(team);
 });
 
 server.put('/smurfs/:id', (req, res) => {

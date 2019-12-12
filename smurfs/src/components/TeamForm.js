@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import smurfContext from '../contexts/smurfContext';
+import teamContext from '../contexts/teamContext';
 
-class SmurfForm extends Component {
-    static contextType = smurfContext;
+class TeamForm extends Component {
+    static contextType = teamContext;
 
     onFormChange(e) {
         this.context.formChange(e.target.name, e.target.value)
@@ -10,7 +10,7 @@ class SmurfForm extends Component {
 
     onFormSubmit(e) {
         e.preventDefault();
-        this.context.addSmurf();
+        this.context.addMember();
     }
 
     render() {
@@ -19,19 +19,19 @@ class SmurfForm extends Component {
               <form onSubmit={this.onFormSubmit.bind(this)}>
                   <input 
                     name='name' 
-                    value={this.context.state.smurfForm.name}
+                    value={this.context.state.teamForm.name}
                     placeholder='name'
                     onChange={this.onFormChange.bind(this)}
                   />
                   <input 
                     name='age' 
-                    value={this.context.state.smurfForm.age}
+                    value={this.context.state.teamForm.age}
                     placeholder='age'
                     onChange={this.onFormChange.bind(this)}
                   />
                   <input 
                     name='height' 
-                    value={this.context.state.smurfForm.height}
+                    value={this.context.state.teamForm.height}
                     placeholder='height'
                     onChange={this.onFormChange.bind(this)}
                   />
@@ -42,4 +42,4 @@ class SmurfForm extends Component {
     }
   }
   
-  export default SmurfForm;
+  export default TeamForm;
